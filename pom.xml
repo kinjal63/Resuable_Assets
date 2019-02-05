@@ -128,5 +128,15 @@
 
 </project>
 
+library(httr) 
+library(jsonlite) 
+url<- 'https://api.citivelocity.com/markets/analytics/chartingbe/rest/external/authed/data?client_id=8744e721-0d9d-4143-8ea6-df72e923305e' 
+req<- '{"startDate": 20170108, "endDate": 20170114, "tags":["SECURITIZED.MBS.MBS_FIXED_RATE.FNMA.MBS_CPN_CC.15Y.T_OAS"] }' 
+resp<- POST(url , body=req, add_headers("accept" = "applicaton/json","authorization" ="Bearer AAIkODc0NGU3MjEtMGQ5ZC00MTQzLThlYTYtZGY3MmU5MjMzMDVlTszNxzeB2qKiek5ogItAYRN3Nr9fxYPl3l4q9jgU-Gdl010fZgzBUvS0c2IzqKTksm9WU1l5oX0qrBRkMkq1moLSbYsHOec6PjIb8S2tPlR4JosXksvhm3RTGrN4QFaRISk8j2cc3cywtS0PcdwAxQ
+", "content-type" = "application/json")) 
+data<- (toJSON(content(resp, as = "parsed"))) 
+prettify(data)
+
+
 
 
