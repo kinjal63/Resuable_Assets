@@ -127,3 +127,12 @@
 
 
 </project>
+
+library(httr) 
+library(jsonlite) 
+url<- 'https://api.citivelocity.com/markets/cv/api/oauth2/token' 
+req <- 'client_id=6b4620e8-9ada-4401-83b1-ed4cd7131bf6&client_secret=bJ2jO1dE5wF6vY5dI5dM4tA4lN1pT1tM0oF8sI8vP4bT0xH6dH&grant_type=client_credentials&scope=/api' 
+resp<- POST(url ,use_proxy("webproxy.wlb2.nam.nsroot.net", 8080), body=req, add_headers("accept" = "applicaton/json", "content-type" = "application/x-www-form-urlencoded")) 
+data<- (toJSON(content(resp, as = "parsed"))) 
+prettify(data)
+
