@@ -37,8 +37,8 @@ public class FurnitureOrder implements FurnitureOrderInterface {
         furnitureCountMap.put(type, furnitureQuantity);
     }
 
-    public Map<Furniture, Integer> getOrderedFurniture() {
-        return furnitureCountMap;
+    public HashMap<Furniture, Integer> getOrderedFurniture() {
+        return (HashMap<Furniture, Integer>)furnitureCountMap;
     }
 
     public float getTotalOrderCost() {
@@ -49,12 +49,12 @@ public class FurnitureOrder implements FurnitureOrderInterface {
         return totalCost;
     }
 
-    public int getTypeCount(Furniture type) {
-        return furnitureCountMap.get(type);
-    }
-
     public float getTypeCost(Furniture type) {
-        return furnitureItemMap.get(type.label());
+    	float cost = 0.0f;
+    	if(furnitureItemMap.containsKey(type.label()))
+    		cost = furnitureItemMap.get(type.label());
+        
+    	return cost;
     }
 
     public int getTotalOrderQuantity() {
@@ -64,5 +64,14 @@ public class FurnitureOrder implements FurnitureOrderInterface {
     		totalOrder += furnitureCountMap.get(type);
     	}
         return totalOrder;
+    }
+
+	@Override
+	public int getTypeCount(Furniture type) {
+		int count = 0;
+    	if(furnitureCountMap.containsKey(type))
+    		count = furnitureCountMap.get(type);
+        
+    	return count;
     }
 }
